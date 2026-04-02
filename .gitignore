@@ -1,0 +1,21 @@
+# Node.js
+node_modules/
+npm-debug.log*
+.env
+dist/
+build/
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.backup
+.terraform.lock.hcl
+*.tfvars
+*.tfvars.json
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Zip files (el que vas a entregar)
+*.zip
