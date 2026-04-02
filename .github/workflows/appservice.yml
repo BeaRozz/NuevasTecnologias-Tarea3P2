@@ -22,7 +22,11 @@ jobs:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
       - name: ACR Login
-        run: az acr login --name ${{ vars.ACR_NAME }}
+        uses: azure/docker-login@v1
+        with:
+          login-server: ${{ vars.ACR_NAME }}.azurecr.io
+          username: ${{ vars.ACR_NAME }}
+          password: ${{ secrets.ACR_PASSWORD }}
 
       - name: Build and Push Docker Image
         run: |
