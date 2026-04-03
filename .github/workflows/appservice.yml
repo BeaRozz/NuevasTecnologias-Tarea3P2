@@ -36,9 +36,12 @@ jobs:
           docker build -t ${{ vars.ACR_NAME }}.azurecr.io/${{ vars.DOCKER_IMAGE_NAME }}:${{ github.sha }} .
           docker push ${{ vars.ACR_NAME }}.azurecr.io/${{ vars.DOCKER_IMAGE_NAME }}:${{ github.sha }}
 
-      - name: Deploy to Azure App Service
-        uses: azure/webapps-deploy@v2
-        with:
-          app-name: ${{ vars.APP_SERVICE_NAME }}
-          resource-group-name: 'rg-tarea3-betty'
-          images: ${{ vars.ACR_NAME }}.azurecr.io/${{ vars.DOCKER_IMAGE_NAME }}:${{ github.sha }}
+      - name: Debug - List Web Apps
+        run: az webapp list --query "[].{Name:name, ResourceGroup:resourceGroup}" --output table
+
+      - name: Deploy to Azure App Service (CLI)
+        run: |
+          az webapp config container set \
+            --name ${{ vars.APP_SERVICE_NAME }} \
+            --resource-group rg-tarea3-betty \
+            --docker-custom-image-name ${{ vars.ACR_NAME }}.azurecr.io/${{ vars.DOCKER_IMAGE_NAME }}:${{ github.sha }}
