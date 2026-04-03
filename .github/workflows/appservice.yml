@@ -21,6 +21,9 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
+      - name: Set Azure Subscription
+        run: az account set --subscription "8064129a-9dce-41ee-aa44-fc3d0a13a4ad"
+
       - name: ACR Login
         uses: azure/docker-login@v1
         with:
@@ -37,5 +40,5 @@ jobs:
         uses: azure/webapps-deploy@v2
         with:
           app-name: ${{ vars.APP_SERVICE_NAME }}
-          resource-group: 'rg-tarea3-betty'
+          resource-group-name: 'rg-tarea3-betty'
           images: ${{ vars.ACR_NAME }}.azurecr.io/${{ vars.DOCKER_IMAGE_NAME }}:${{ github.sha }}
