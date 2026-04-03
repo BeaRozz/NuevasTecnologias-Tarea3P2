@@ -22,7 +22,6 @@ jobs:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: "upload"
-          app_location: "app" # Usar la carpeta del proyecto
+          app_location: "app" # Raíz del proyecto Vue
           api_location: ""
-          output_location: "." # Los archivos estáticos (index.html) se generarán aquí mismo
-          # Ya no necesitamos el 'skip_app_build' porque ahora sí hay un comando 'npm run build' funcional
+          output_location: "dist" # Carpeta generada por 'npm run build' de Vite

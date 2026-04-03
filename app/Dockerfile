@@ -1,13 +1,13 @@
-FROM node:alpine
-
-WORKDIR /usr/src/app
-
+# Etapa de construcción
+FROM node:20-alpine as build-stage
+WORKDIR /app
 COPY package*.json ./
-
-RUN npm install --production
-
+RUN npm install
 COPY . .
+RUN npm run build
 
-EXPOSE 8080
-
-CMD [ "npm", "start" ]
+# Etapa de producción
+FROM nginx:stable-alpine as production-stage
+COPY --from=build-stage /app/dist /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]

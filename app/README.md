@@ -1,31 +1,28 @@
-   # Aplicación Web - Parcial 2
+# App Parcial 2 - Vue.js Edition 🚀
 
-   Esta es una aplicación web sencilla construida con Express.js.
+Esta es la aplicación web para el Parcial 2, migrada a una arquitectura moderna con **Vue.js** y **Vite**.
 
-   ## Requisitos
+## Características
+- **Framework:** Vue.js 3
+- **Build Tool:** Vite
+- **Contenedor:** Docker (Nginx)
+- **Despliegue:** Azure Static Web Apps & Azure App Service
 
-   - [Node.js](https://nodejs.org/) (v14+)
-   - [Docker](https://www.docker.com/) (opcional para despliegue)
+## Estructura
+- `/src`: Código fuente de Vue.
+- `index.html`: Punto de entrada de la aplicación.
+- `Dockerfile`: Multi-stage build para producción.
 
-   ## Instalación Local
+## Comandos
+```bash
+# Instalar dependencias
+npm install
 
-   1. Instalar dependencias:
-      ```bash
-      npm install
-      ```
+# Desarrollo
+npm run dev
 
-   2. Iniciar la aplicación:
-      ```bash
-      npm start
-      ```
+# Construcción para producción
+npm run build
+```
 
-   La aplicación estará disponible en `http://localhost:8080`.
-
-   ## Docker
-
-   Para construir y ejecutar la imagen:
-
-   ```bash
-   docker build -t app-parcial-2 .
-   docker run -p 8080:8080 app-parcial-2
-   ```
+🐮🦐💖🐻
