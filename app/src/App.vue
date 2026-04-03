@@ -3,7 +3,7 @@
     <div class="card">
       <h1>Bienvenida al Parcial 2 🚀</h1>
       <h2>Versión Vue.js + Azure</h2>
-      <p class="emoji">🐮🦐💖🐻</p>
+      <p class="emoji">🐮🦐💖🐻✨</p>
       <div class="badge-container">
         <span class="badge">Static Web App</span>
         <span class="badge">App Service</span>
