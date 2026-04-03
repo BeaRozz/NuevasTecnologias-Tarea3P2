@@ -21,9 +21,6 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-      - name: Set Azure Subscription
-        run: az account set --subscription "8064129a-9dce-41ee-aa44-fc3d0a13a4ad"
-
       - name: ACR Login
         uses: azure/docker-login@v1
         with:
@@ -36,12 +33,9 @@ jobs:
           docker build -t ${{ vars.ACR_NAME }}.azurecr.io/${{ vars.DOCKER_IMAGE_NAME }}:${{ github.sha }} .
           docker push ${{ vars.ACR_NAME }}.azurecr.io/${{ vars.DOCKER_IMAGE_NAME }}:${{ github.sha }}
 
-      - name: Debug - List Web Apps
-        run: az webapp list --query "[].{Name:name, ResourceGroup:resourceGroup}" --output table
-
-      - name: Deploy to Azure App Service (CLI)
-        run: |
-          az webapp config container set \
-            --name ${{ vars.APP_SERVICE_NAME }} \
-            --resource-group rg-tarea3-betty \
-            --container-image-name ${{ vars.ACR_NAME }}.azurecr.io/${{ vars.DOCKER_IMAGE_NAME }}:${{ github.sha }}
+      - name: Deploy to Azure App Service
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: ${{ vars.APP_SERVICE_NAME }}
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+          images: ${{ vars.ACR_NAME }}.azurecr.io/${{ vars.DOCKER_IMAGE_NAME }}:${{ github.sha }}
