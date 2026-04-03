@@ -4,7 +4,8 @@
   "description": "Aplicación web básica para el Parcial 2",
   "main": "src/app.js",
   "scripts": {
-    "start": "node src/app.js"
+    "start": "node src/app.js",
+    "build": "echo '<h1>Bienvenida al Parcial 2 🐮🦐💖🐻</h1>' > index.html"
   },
   "dependencies": {
     "express": "^4.18.2"
