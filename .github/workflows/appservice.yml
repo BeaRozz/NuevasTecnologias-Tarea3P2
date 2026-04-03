@@ -44,4 +44,4 @@ jobs:
           az webapp config container set \
             --name ${{ vars.APP_SERVICE_NAME }} \
             --resource-group rg-tarea3-betty \
-            --docker-custom-image-name ${{ vars.ACR_NAME }}.azurecr.io/${{ vars.DOCKER_IMAGE_NAME }}:${{ github.sha }}
+            --container-image-name ${{ vars.ACR_NAME }}.azurecr.io/${{ vars.DOCKER_IMAGE_NAME }}:${{ github.sha }}
